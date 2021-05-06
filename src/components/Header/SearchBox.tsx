@@ -20,7 +20,7 @@ export function SearchBox() {
         variant="unstyled"
         px="4"
         mr="4"
-        placeholder="Buscar na plataforma"
+        placeholder="Search on the platform"
         _placeholder={{ color: 'app.placeholder' }}
       />
       <Icon as={RiSearchLine} fontSize="20" />

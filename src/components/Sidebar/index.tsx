@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Box, Stack } from '@chakra-ui/react';
 import { BiDrink } from 'react-icons/bi';
 
+import { changeCategory } from '../../slices/category/categorySlice';
 import { NavLink } from './NavLink';
 import { NavSection } from './NavSection';
 import { api } from '../../services/api';
@@ -11,6 +13,9 @@ type Category = {
 };
 
 export function Sidebar() {
+  const dispatch = useDispatch();
+  const categoryName = useSelector((state: any) => state.category.value);
+
   const [categories, setCategories] = useState<Category[]>([] as Category[]);
 
   async function getCategories() {
@@ -31,7 +36,12 @@ export function Sidebar() {
       <Stack spacing="12" align="flex-start">
         <NavSection title="DRINK CATEGORIES">
           {categories.map((category) => (
-            <NavLink key={category.name} icon={BiDrink}>
+            <NavLink
+              key={category.name}
+              icon={BiDrink}
+              isActive={categoryName === category.name}
+              onClick={() => dispatch(changeCategory(category.name))}
+            >
               {category.name}
             </NavLink>
           ))}
