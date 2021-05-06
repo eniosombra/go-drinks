@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaChevronRight } from 'react-icons/fa';
 import {
   Box,
@@ -11,6 +11,15 @@ import {
   Breadcrumb,
   Badge,
   BreadcrumbItem,
+  Modal,
+  useDisclosure,
+  Button,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
 } from '@chakra-ui/react';
 
 import { api } from '../services/api';
@@ -23,7 +32,9 @@ type Drink = {
 };
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
   const categoryName = useSelector((state: any) => state.category.value);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [drinks, setDrinks] = useState<Drink[]>([] as Drink[]);
 
@@ -39,7 +50,7 @@ export default function Dashboard() {
       );
     }
     listCategory();
-  }, [categoryName]);
+  }, [categoryName, dispatch]);
 
   return (
     <Flex direction="column" h="100vh">
@@ -47,6 +58,25 @@ export default function Dashboard() {
         <Sidebar />
 
         <Stack w="100%">
+          <>
+            <Modal isOpen={isOpen} onClose={onClose}>
+              <ModalOverlay />
+              <ModalContent bg="app.box">
+                <ModalHeader>Drink detail</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <Text>Text text text</Text>
+                </ModalBody>
+
+                <ModalFooter>
+                  <Button colorScheme="yellow" mr={3} onClick={onClose}>
+                    Close
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
+          </>
+
           <Breadcrumb
             spacing="8px"
             separator={<FaChevronRight size={12} color="gray.500" />}
@@ -70,6 +100,7 @@ export default function Dashboard() {
                 _hover={{ opacity: '70%', cursor: 'pointer' }}
                 overflow="hidden"
                 boxShadow="dark-lg"
+                onClick={onOpen}
               >
                 <Image src={drink.imageUrl} alt={drink.name} />
                 <Text p={4}>{drink.name}</Text>
