@@ -1,7 +1,15 @@
-import { Flex, Icon, Input } from '@chakra-ui/react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Flex, Icon, Input, useToast } from '@chakra-ui/react';
 import { RiSearchLine } from 'react-icons/ri';
 
+import { getDrinksByName } from '../../slices/drink/drink.thunks';
+
 export function SearchBox() {
+  const dispatch = useDispatch();
+  const toast = useToast();
+  const [drinkName, setDrinkName] = useState('');
+
   return (
     <Flex
       as="label"
@@ -22,8 +30,25 @@ export function SearchBox() {
         mr="4"
         placeholder="Search on the platform"
         _placeholder={{ color: 'app.placeholder' }}
+        onChange={(event) => setDrinkName(event.target.value)}
       />
-      <Icon as={RiSearchLine} fontSize="20" />
+      <Icon
+        as={RiSearchLine}
+        fontSize="20"
+        _hover={{ cursor: 'pointer' }}
+        onClick={() => {
+          drinkName === ''
+            ? toast({
+                title: 'Warning.',
+                description: 'Write something you want to search.',
+                status: 'error',
+                position: 'top',
+                duration: 1000,
+                isClosable: true,
+              })
+            : dispatch(getDrinksByName(drinkName));
+        }}
+      />
     </Flex>
   );
 }

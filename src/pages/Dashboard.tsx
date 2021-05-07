@@ -54,7 +54,7 @@ export default function Dashboard() {
             </BreadcrumbItem>
           </Breadcrumb>
 
-          <LinkDrinks drinks={drinkData.data} handleSelet={handleSeletDrink} />
+          <LinkDrinks data={drinkData.data} handleSelet={handleSeletDrink} />
         </Stack>
       </Flex>
     </Flex>
