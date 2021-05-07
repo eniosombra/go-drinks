@@ -5,7 +5,7 @@ type ListDrinksProps = {
   handleSelet: (id: string) => void;
 };
 
-export function LinkDrinks({ data, handleSelet }: ListDrinksProps) {
+export function ListDrinks({ data, handleSelet }: ListDrinksProps) {
   return (
     <SimpleGrid flex="1" gap="4" minChildWidth="320px" align="flex-start">
       {data && data.drinks !== null ? (
@@ -17,7 +17,7 @@ export function LinkDrinks({ data, handleSelet }: ListDrinksProps) {
             maxW="400"
             borderColor="gray.300"
             borderRadius="8"
-            _hover={{ opacity: '70%', cursor: 'pointer' }}
+            _hover={{ opacity: '70%', cursor: 'pointer', width: '99%' }}
             overflow="hidden"
             boxShadow="dark-lg"
             onClick={() => handleSelet(drink?.idDrink)}
@@ -27,7 +27,9 @@ export function LinkDrinks({ data, handleSelet }: ListDrinksProps) {
           </Box>
         ))
       ) : (
-        <Text align="center">Drink not found!</Text>
+        <Text align="center" fontSize="x-large">
+          Drink not found!
+        </Text>
       )}
     </SimpleGrid>
   );

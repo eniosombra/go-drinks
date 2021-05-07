@@ -14,7 +14,7 @@ import {
 import { api } from '../services/api';
 import { Sidebar } from '../components/Sidebar';
 import { ModalDetail } from '../components/ModalDetail';
-import { LinkDrinks } from '../components/LinkDrinks';
+import { ListDrinks } from '../components/ListDrinks';
 import { getDrinksByCategory } from '../slices/drink/drink.thunks';
 
 export default function Dashboard() {
@@ -54,7 +54,7 @@ export default function Dashboard() {
             </BreadcrumbItem>
           </Breadcrumb>
 
-          <LinkDrinks data={drinkData.data} handleSelet={handleSeletDrink} />
+          <ListDrinks data={drinkData.data} handleSelet={handleSeletDrink} />
         </Stack>
       </Flex>
     </Flex>

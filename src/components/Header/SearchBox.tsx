@@ -39,9 +39,9 @@ export function SearchBox() {
         onClick={() => {
           drinkName === ''
             ? toast({
-                title: 'Warning.',
+                title: 'Warning',
                 description: 'Write something you want to search.',
-                status: 'error',
+                status: 'info',
                 position: 'top',
                 duration: 1000,
                 isClosable: true,
