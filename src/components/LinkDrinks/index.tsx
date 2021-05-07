@@ -8,22 +8,23 @@ type ListDrinksProps = {
 export function LinkDrinks({ drinks, handleSelet }: ListDrinksProps) {
   return (
     <SimpleGrid flex="1" gap="4" minChildWidth="320px" align="flex-start">
-      {drinks.map((drink) => (
-        <Box
-          key={drink.id}
-          bg="app.box"
-          maxW="400"
-          borderColor="gray.300"
-          borderRadius="8"
-          _hover={{ opacity: '70%', cursor: 'pointer' }}
-          overflow="hidden"
-          boxShadow="dark-lg"
-          onClick={() => handleSelet(drink.id)}
-        >
-          <Image src={drink.imageUrl} alt={drink.name} />
-          <Text p={4}>{drink.name}</Text>
-        </Box>
-      ))}
+      {drinks &&
+        Object.values(drinks)[0].map((drink: any) => (
+          <Box
+            key={drink.idDrink}
+            bg="app.box"
+            maxW="400"
+            borderColor="gray.300"
+            borderRadius="8"
+            _hover={{ opacity: '70%', cursor: 'pointer' }}
+            overflow="hidden"
+            boxShadow="dark-lg"
+            onClick={() => handleSelet(drink.idDrink)}
+          >
+            <Image src={drink.strDrinkThumb} alt={drink.strDrink} />
+            <Text p={4}>{drink.strDrink}</Text>
+          </Box>
+        ))}
     </SimpleGrid>
   );
 }

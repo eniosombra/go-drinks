@@ -15,33 +15,17 @@ import { api } from '../services/api';
 import { Sidebar } from '../components/Sidebar';
 import { ModalDetail } from '../components/ModalDetail';
 import { LinkDrinks } from '../components/LinkDrinks';
-
-type Drink = {
-  id: string;
-  name: string;
-  imageUrl: string;
-  instructions: string;
-};
+import { getDrinksByCategory } from '../slices/drink/drink.thunks';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
   const categoryName = useSelector((state: any) => state.category.value);
+  const drinkData = useSelector((state: any) => state.drink.items);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [drinks, setDrinks] = useState<Drink[]>([] as Drink[]);
   const [selectedDrink, setSelectedDrink] = useState<any>({} as any);
 
   useEffect(() => {
-    async function listCategory() {
-      const { data } = await api.get(`/filter.php?c=${categoryName}`);
-      setDrinks(
-        data.drinks.map((drink: any) => ({
-          id: drink.idDrink,
-          name: drink.strDrink,
-          imageUrl: drink.strDrinkThumb,
-        }))
-      );
-    }
-    listCategory();
+    dispatch(getDrinksByCategory(categoryName));
   }, [categoryName, dispatch]);
 
   const handleSeletDrink = async (drinkId: string) => {
@@ -70,7 +54,7 @@ export default function Dashboard() {
             </BreadcrumbItem>
           </Breadcrumb>
 
-          <LinkDrinks drinks={drinks} handleSelet={handleSeletDrink} />
+          <LinkDrinks drinks={drinkData.data} handleSelet={handleSeletDrink} />
         </Stack>
       </Flex>
     </Flex>
