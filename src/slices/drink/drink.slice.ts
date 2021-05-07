@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getDrinksByCategory } from './drink.thunks';
+import { getDrinksByCategory, getDrinksByName } from './drink.thunks';
 
 export const drinkSlice = createSlice({
   name: 'drink',
@@ -11,8 +11,12 @@ export const drinkSlice = createSlice({
     builder.addCase(getDrinksByCategory.fulfilled, (state, action) => {
       state.items = action.payload;
     });
+
+    builder.addCase(getDrinksByName.fulfilled, (state, action) => {
+      state.items = action.payload;
+    });
   },
 });
 
-export { getDrinksByCategory };
+export { getDrinksByCategory, getDrinksByName };
 export default drinkSlice.reducer;
