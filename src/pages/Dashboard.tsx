@@ -2,11 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaChevronRight } from 'react-icons/fa';
 import {
-  Box,
   Flex,
-  SimpleGrid,
   Text,
-  Image,
   Stack,
   Breadcrumb,
   Badge,
@@ -17,6 +14,7 @@ import {
 import { api } from '../services/api';
 import { Sidebar } from '../components/Sidebar';
 import { ModalDetail } from '../components/ModalDetail';
+import { LinkDrinks } from '../components/LinkDrinks';
 
 type Drink = {
   id: string;
@@ -72,24 +70,7 @@ export default function Dashboard() {
             </BreadcrumbItem>
           </Breadcrumb>
 
-          <SimpleGrid flex="1" gap="4" minChildWidth="320px" align="flex-start">
-            {drinks.map((drink) => (
-              <Box
-                key={drink.id}
-                bg="app.box"
-                maxW="400"
-                borderColor="gray.300"
-                borderRadius="8"
-                _hover={{ opacity: '70%', cursor: 'pointer' }}
-                overflow="hidden"
-                boxShadow="dark-lg"
-                onClick={() => handleSeletDrink(drink.id)}
-              >
-                <Image src={drink.imageUrl} alt={drink.name} />
-                <Text p={4}>{drink.name}</Text>
-              </Box>
-            ))}
-          </SimpleGrid>
+          <LinkDrinks drinks={drinks} handleSelet={handleSeletDrink} />
         </Stack>
       </Flex>
     </Flex>
