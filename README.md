@@ -4,6 +4,9 @@ Esse projeto consiste em uma aplicação front-end web que busca dados na API (T
 
 #### `Observação: O back-end utilizado nesse projeto foi desenvolvido por TheCocktailDB`.
 
+<p align="center"> <img alt="go-drink" src="https://github.com/eniosombra/go-drinks/blob/master/demoGoDrink.gif"/>
+</p>
+
 ## Principais tecnologias utilizadas:
 
 - [ReactJS](https://reactjs.org/)
