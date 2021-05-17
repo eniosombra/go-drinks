@@ -15,11 +15,16 @@ export function ListDrinks({ data, handleSelet }: ListDrinksProps) {
             key={drink?.idDrink}
             bg="app.box"
             maxW="400"
-            borderColor="gray.300"
+            borderColor="app.selectedBorder"
             borderRadius="8"
-            _hover={{ opacity: '70%', cursor: 'pointer', width: '99%' }}
+            _hover={{
+              filter: 'brightness(120%)',
+              cursor: 'pointer',
+              borderWidth: '2px',
+              transform: 'scale(1.05)',
+            }}
             overflow="hidden"
-            boxShadow="dark-lg"
+            boxShadow="lg"
             onClick={() => handleSelet(drink?.idDrink)}
           >
             <Image src={drink?.strDrinkThumb} alt={drink?.strDrink} />
