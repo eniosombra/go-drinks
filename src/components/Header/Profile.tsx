@@ -12,7 +12,7 @@ export function Profile() {
 
       <Avatar
         size="md"
-        name="Enio Sombra"
+        name="Enio L. Sombra"
         src="http://github.com/eniosombra.png"
       ></Avatar>
     </Flex>
